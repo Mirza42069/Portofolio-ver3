@@ -68,21 +68,21 @@ function BlurReveal({ name }: { name: string }) {
 export default function Page() {
     return (
         <main className="min-h-screen bg-background text-foreground tracking-tight">
-            <div className="mx-auto max-w-4xl px-12 py-20">
+            <div className="mx-auto max-w-4xl px-6 py-12 sm:px-12 sm:py-20">
                 {/* Hero */}
                 <section className="mb-8">
-                    <h1 className="text-4xl font-semibold text-foreground mb-3">
+                    <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-3">
                         <BlurReveal name={personalInfo.name} />
                     </h1>
-                    <p className="text-foreground/70 flex items-center gap-2 text-base">
+                    <p className="text-foreground/70 flex items-center gap-2 text-sm sm:text-base">
                         <IconMapPin size={16} aria-hidden="true" />
                         {personalInfo.location}
                     </p>
-                    <p className="text-foreground/70 flex items-center gap-2 text-base">
+                    <p className="text-foreground/70 flex items-center gap-2 text-sm sm:text-base">
                         <IconBriefcase size={16} aria-hidden="true" />
                         open to opportunities
                     </p>
-                    <p className="text-foreground/70 leading-relaxed text-base mt-3">
+                    <p className="text-foreground/70 leading-relaxed text-sm sm:text-base mt-3">
                         {personalInfo.bio}
                     </p>
                 </section>
@@ -103,9 +103,9 @@ export default function Page() {
                                 rel="noopener noreferrer"
                                 className="group block"
                             >
-                                <div className="flex items-start justify-between gap-4">
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                                     <div className="flex-1">
-                                        <h3 className="text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
+                                        <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
                                             {job.role}
                                             <IconArrowUpRight
                                                 size={16}
@@ -113,10 +113,10 @@ export default function Page() {
                                                 aria-hidden="true"
                                             />
                                         </h3>
-                                        <p className="text-base text-foreground/60">{job.company}</p>
-                                        <p className="mt-1 text-base text-foreground/80">{job.description}</p>
+                                        <p className="text-sm sm:text-base text-foreground/60">{job.company}</p>
+                                        <p className="mt-1 text-sm sm:text-base text-foreground/80">{job.description}</p>
                                     </div>
-                                    <p className="text-base text-foreground/60 whitespace-nowrap">
+                                    <p className="text-xs sm:text-base text-foreground/60 whitespace-nowrap">
                                         {job.period}
                                     </p>
                                 </div>
@@ -140,7 +140,7 @@ export default function Page() {
                                     rel="noopener noreferrer"
                                     className="group block"
                                 >
-                                    <h3 className="text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
+                                    <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
                                         {project.name}
                                         <IconArrowUpRight
                                             size={16}
@@ -148,16 +148,16 @@ export default function Page() {
                                             aria-hidden="true"
                                         />
                                     </h3>
-                                    <p className="text-base text-foreground/60">{project.tag}</p>
-                                    <p className="mt-1 text-base text-foreground/80">{project.description}</p>
+                                    <p className="text-sm sm:text-base text-foreground/60">{project.tag}</p>
+                                    <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
                                 </a>
                             ) : (
                                 <div key={project.name} className="group cursor-default">
-                                    <h3 className="text-base font-medium text-foreground transition-colors group-hover:text-primary">
+                                    <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
                                         {project.name}
                                     </h3>
-                                    <p className="text-base text-foreground/60">{project.tag}</p>
-                                    <p className="mt-1 text-base text-foreground/80">{project.description}</p>
+                                    <p className="text-sm sm:text-base text-foreground/60">{project.tag}</p>
+                                    <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
                                 </div>
                             )
                         )}
