@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "portfolio",
+  title: "mir • portfolio",
   description:
     "22 y/o computer engineering student passionate about making websites. Building PCs and editing videos.",
   keywords: ["developer", "web developer", "portfolio", "mirza"],
