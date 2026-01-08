@@ -74,15 +74,15 @@ export default function Page() {
                     <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-3">
                         <BlurReveal name={personalInfo.name} />
                     </h1>
-                    <p className="text-foreground/70 flex items-center gap-2 text-sm sm:text-base">
+                    <p className="text-gray-500 flex items-center gap-2 text-sm sm:text-base">
                         <IconMapPin size={16} aria-hidden="true" />
                         {personalInfo.location}
                     </p>
-                    <p className="text-foreground/70 flex items-center gap-2 text-sm sm:text-base">
+                    <p className="text-gray-500 flex items-center gap-2 text-sm sm:text-base">
                         <IconBriefcase size={16} aria-hidden="true" />
                         open to opportunities
                     </p>
-                    <p className="text-foreground/70 leading-relaxed text-sm sm:text-base mt-3">
+                    <p className="text-foreground/85 leading-relaxed text-sm sm:text-base mt-3">
                         {personalInfo.bio}
                     </p>
                 </section>
@@ -113,10 +113,10 @@ export default function Page() {
                                                 aria-hidden="true"
                                             />
                                         </h3>
-                                        <p className="text-sm sm:text-base text-foreground/60">{job.company}</p>
+                                        <p className="text-sm sm:text-base text-gray-500">{job.company}</p>
                                         <p className="mt-1 text-sm sm:text-base text-foreground/80">{job.description}</p>
                                     </div>
-                                    <p className="text-xs sm:text-base text-foreground/60 whitespace-nowrap">
+                                    <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">
                                         {job.period}
                                     </p>
                                 </div>
@@ -148,7 +148,7 @@ export default function Page() {
                                             aria-hidden="true"
                                         />
                                     </h3>
-                                    <p className="text-sm sm:text-base text-foreground/60">{project.tag}</p>
+                                    <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
                                     <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
                                 </a>
                             ) : (
@@ -156,7 +156,7 @@ export default function Page() {
                                     <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
                                         {project.name}
                                     </h3>
-                                    <p className="text-sm sm:text-base text-foreground/60">{project.tag}</p>
+                                    <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
                                     <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
                                 </div>
                             )
@@ -171,7 +171,7 @@ export default function Page() {
                             href="https://mail.google.com/mail/u/0/?to=mirzafarisy@gmail.com&fs=1&tf=cm"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground transition-colors hover:text-primary"
+                            className="text-gray-500 transition-colors hover:text-primary"
                             aria-label="Email"
                         >
                             <IconMail size={20} />
@@ -180,7 +180,7 @@ export default function Page() {
                             href="https://github.com/Mirza42069"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-muted-foreground transition-colors hover:text-primary"
+                            className="text-gray-500 transition-colors hover:text-primary"
                             aria-label="GitHub"
                         >
                             <IconBrandGithub size={20} />
