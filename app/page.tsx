@@ -26,24 +26,28 @@ const projects = [
         url: null,
         tag: "in progress",
         description: "currently working on...",
+        year: "2026",
     },
     {
         name: "money drain",
         url: "https://moneydrain.vercel.app/",
         tag: "prototype",
         description: "simple money management website",
+        year: "2025",
     },
     {
         name: "newsroom",
         url: "https://newsroom-webnewsagain.vercel.app/",
         tag: "prototype",
         description: "better version of winnicode",
+        year: "2025",
     },
     {
         name: "gacha simulator",
         url: null,
         tag: "lost media",
         description: "1st time making website",
+        year: "2024",
     },
 ];
 
@@ -140,24 +144,34 @@ export default function Page() {
                                     rel="noopener noreferrer"
                                     className="group block"
                                 >
-                                    <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
-                                        {project.name}
-                                        <IconArrowUpRight
-                                            size={16}
-                                            className="text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-                                            aria-hidden="true"
-                                        />
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
-                                    <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                                        <div className="flex-1">
+                                            <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
+                                                {project.name}
+                                                <IconArrowUpRight
+                                                    size={16}
+                                                    className="text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+                                                    aria-hidden="true"
+                                                />
+                                            </h3>
+                                            <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
+                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                        </div>
+                                        <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">{project.year}</p>
+                                    </div>
                                 </a>
                             ) : (
                                 <div key={project.name} className="group cursor-default">
-                                    <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
-                                        {project.name}
-                                    </h3>
-                                    <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
-                                    <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                                        <div className="flex-1">
+                                            <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
+                                                {project.name}
+                                            </h3>
+                                            <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
+                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                        </div>
+                                        <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">{project.year}</p>
+                                    </div>
                                 </div>
                             )
                         )}
