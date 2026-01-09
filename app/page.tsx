@@ -23,7 +23,7 @@ const workExperience = [
 const projects = [
     {
         name: "thesis",
-        url: null,
+        url: "https://benchmark-db-result.vercel.app/",
         tag: "in progress",
         description: "currently working on...",
         year: "2026",
