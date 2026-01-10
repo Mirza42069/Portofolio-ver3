@@ -25,7 +25,8 @@ const projects = [
         name: "thesis",
         url: "https://benchmark-db-result.vercel.app/",
         tag: "in progress",
-        description: "currently working on...",
+        description: "currently working on",
+        animated: true,
         year: "2026",
     },
     {
@@ -67,6 +68,19 @@ function BlurReveal({ name }: { name: string }) {
             {name}
         </span>
     );
+}
+
+function AnimatedDots() {
+    const [dots, setDots] = useState("");
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
+        }, 500);
+        return () => clearInterval(interval);
+    }, []);
+
+    return <span className="inline-block w-4">{dots}</span>;
 }
 
 export default function Page() {
@@ -155,7 +169,10 @@ export default function Page() {
                                                 />
                                             </h3>
                                             <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
-                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">
+                                                {project.description}
+                                                {project.animated && <AnimatedDots />}
+                                            </p>
                                         </div>
                                         <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">{project.year}</p>
                                     </div>
