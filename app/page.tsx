@@ -61,7 +61,7 @@ function BlurReveal({ name }: { name: string }) {
 
     return (
         <span
-            className={`transition-all duration-1000 ease-out ${revealed ? "opacity-100 blur-0" : "opacity-0 blur-lg"
+            className={`transition-all duration-2000 ease-out ${revealed ? "opacity-100 blur-0" : "opacity-0 blur-lg"
                 }`}
         >
             {name}
