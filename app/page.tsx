@@ -12,7 +12,7 @@ const personalInfo = {
 
 const workExperience = [
     {
-        company: "software engineer intern",
+        company: "fullstack developer intern",
         role: "winnicode garuda teknologi",
         url: "https://winni-project.vercel.app/",
         period: "march 2025 - august 2025",
