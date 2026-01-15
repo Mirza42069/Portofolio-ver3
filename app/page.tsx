@@ -7,28 +7,26 @@ import { useEffect, useState } from "react";
 const personalInfo = {
     name: "Mirza",
     location: "tangsel, indonesia",
-    bio: "i'm a 22 y/o computer engineering student. passionate about making websites. when i'm not sleeping, i'm probably rebuilding pc or editing videos.",
+    bio: "i'm a 22 y/o computer engineering student. passionate about <highlight>making websites</highlight>. when i'm not sleeping, i'm probably rebuilding pc or editing videos.",
 };
 
 const workExperience = [
     {
-        company: "fullstack developer intern",
-        role: "winnicode garuda teknologi",
+        company: "winnicode garuda teknologi",
+        role: "fullstack developer intern",
         url: "https://winni-project.vercel.app/",
         period: "march 2025 - august 2025",
         description: "built a prototype news website",
     },
 ];
+const currentProject = {
+    name: "thesis",
+    url: "https://benchmark-db-result.vercel.app/",
+    description: "currently working on",
+    animated: true,
+};
 
 const projects = [
-    {
-        name: "thesis",
-        url: "https://benchmark-db-result.vercel.app/",
-        tag: "in progress",
-        description: "currently working on",
-        animated: true,
-        year: "2026",
-    },
     {
         name: "money drain",
         url: "https://moneydrain.vercel.app/",
@@ -86,7 +84,7 @@ function AnimatedDots() {
 export default function Page() {
     return (
         <main className="min-h-screen bg-background text-foreground tracking-tight">
-            <div className="mx-auto max-w-4xl px-6 py-12 sm:px-12 sm:py-20">
+            <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8 sm:py-14">
                 {/* Hero */}
                 <section className="mb-8">
                     <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-3">
@@ -100,16 +98,38 @@ export default function Page() {
                         <IconBriefcase size={16} aria-hidden="true" />
                         open to opportunities
                     </p>
-                    <p className="text-foreground/85 leading-relaxed text-sm sm:text-base mt-3">
-                        {personalInfo.bio}
+                    <p className="text-foreground/50 leading-relaxed text-sm sm:text-base mt-3">
+                        i'm a 22 y/o computer engineering student. passionate about <span className="text-foreground">making websites</span>. when i'm not sleeping, i'm probably rebuilding pc or editing videos.
                     </p>
                 </section>
 
-                <hr className="border-border my-8" />
+                <hr className="border-border my-6" />
+
+                {/* Currently */}
+                <section className="mb-12">
+                    <h2 className="mb-4 text-xl font-semibold text-foreground/50 flex items-center gap-2">
+                        <span className="text-primary" aria-hidden="true">^</span> currently<AnimatedDots />
+                    </h2>
+                    <a
+                        href={currentProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block"
+                    >
+                        <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
+                            {currentProject.name}
+                            <IconArrowUpRight
+                                size={16}
+                                className="text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+                                aria-hidden="true"
+                            />
+                        </h3>
+                    </a>
+                </section>
 
                 {/* Work */}
-                <section className="mb-8">
-                    <h2 className="mb-6 text-xl font-semibold flex items-center gap-2">
+                <section className="mb-12">
+                    <h2 className="mb-4 text-xl font-semibold text-foreground/50 flex items-center gap-2">
                         <span className="text-primary" aria-hidden="true">^</span> work
                     </h2>
                     <div className="space-y-4">
@@ -124,19 +144,21 @@ export default function Page() {
                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                                     <div className="flex-1">
                                         <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
-                                            {job.role}
+                                            {job.company}
                                             <IconArrowUpRight
                                                 size={16}
                                                 className="text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
                                                 aria-hidden="true"
                                             />
                                         </h3>
-                                        <p className="text-sm sm:text-base text-gray-500">{job.company}</p>
-                                        <p className="mt-1 text-sm sm:text-base text-foreground/80">{job.description}</p>
+                                        <p className="text-sm sm:text-base text-foreground/50">{job.description}</p>
                                     </div>
-                                    <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">
-                                        {job.period}
-                                    </p>
+                                    <div className="text-right">
+                                        <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">
+                                            {job.period}
+                                        </p>
+                                        <p className="text-sm sm:text-base text-gray-500">{job.role}</p>
+                                    </div>
                                 </div>
                             </a>
                         ))}
@@ -144,8 +166,8 @@ export default function Page() {
                 </section>
 
                 {/* Projects */}
-                <section className="mb-8">
-                    <h2 className="mb-6 text-xl font-semibold flex items-center gap-2">
+                <section className="mb-12">
+                    <h2 className="mb-6 text-xl font-semibold text-foreground/50 flex items-center gap-2">
                         <span className="text-primary" aria-hidden="true">^</span> projects
                     </h2>
                     <div className="space-y-4">
@@ -168,10 +190,8 @@ export default function Page() {
                                                     aria-hidden="true"
                                                 />
                                             </h3>
-                                            <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
-                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">
+                                            <p className="mt-1 text-sm sm:text-base text-foreground/50">
                                                 {project.description}
-                                                {project.animated && <AnimatedDots />}
                                             </p>
                                         </div>
                                         <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">{project.year}</p>
@@ -184,8 +204,7 @@ export default function Page() {
                                             <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
                                                 {project.name}
                                             </h3>
-                                            <p className="text-sm sm:text-base text-gray-500">{project.tag}</p>
-                                            <p className="mt-1 text-sm sm:text-base text-foreground/80">{project.description}</p>
+                                            <p className="mt-1 text-sm sm:text-base text-foreground/50">{project.description}</p>
                                         </div>
                                         <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">{project.year}</p>
                                     </div>
@@ -197,7 +216,7 @@ export default function Page() {
 
                 {/* Footer */}
                 <footer className="mt-8">
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 justify-end">
                         <a
                             href="https://mail.google.com/mail/u/0/?to=mirzafarisy@gmail.com&fs=1&tf=cm"
                             target="_blank"
