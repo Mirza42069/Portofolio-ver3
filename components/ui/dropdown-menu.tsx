@@ -20,14 +20,29 @@ function DropdownMenu({
 
 function DropdownMenuTrigger({
   className,
+  asChild,
+  children,
   ...props
-}: React.ComponentProps<typeof Menu.Trigger>) {
+}: React.ComponentProps<typeof Menu.Trigger> & { asChild?: boolean }) {
+  // Base UI uses render prop, but we support asChild for backwards compatibility
+  if (asChild && React.isValidElement(children)) {
+    return (
+      <Menu.Trigger
+        data-slot="dropdown-menu-trigger"
+        className={cn("outline-none", className)}
+        render={children}
+        {...props}
+      />
+    )
+  }
   return (
     <Menu.Trigger
       data-slot="dropdown-menu-trigger"
       className={cn("outline-none", className)}
       {...props}
-    />
+    >
+      {children}
+    </Menu.Trigger>
   )
 }
 

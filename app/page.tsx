@@ -3,7 +3,6 @@
 import { IconArrowUpRight, IconBrandGithub, IconBriefcase, IconMail, IconMapPin, IconSun, IconMoon } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
 import { motion } from "motion/react";
 
 function ThemeToggle() {
@@ -105,36 +104,10 @@ function AnimatedDots() {
     return <span className="inline-block w-4">{dots}</span>;
 }
 
-function ThemedStarsBackground() {
-    const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => setMounted(true), []);
-
-    if (!mounted) return null;
-
-    // Amber accent for light mode: #f59e0b (amber-500)
-    const starColor = resolvedTheme === "dark" 
-        ? "rgba(255,255,255,0.5)" 
-        : "rgba(245,158,11,0.4)"; // amber with transparency
-
-    return (
-        <div className="fixed inset-0 -z-10 dark:bg-[radial-gradient(ellipse_at_bottom,_#1a1a1a_0%,_#0a0a0a_100%)] bg-[radial-gradient(ellipse_at_bottom,_#f5f5f5_0%,_#ffffff_100%)]">
-            <StarsBackground 
-                starColor={starColor} 
-                speed={100} 
-                factor={0.03}
-                className="absolute inset-0"
-            />
-        </div>
-    );
-}
-
 export default function Page() {
     return (
-        <main className="min-h-screen text-foreground tracking-tight relative">
-            <ThemedStarsBackground />
-            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-12 sm:py-20 relative z-10">
+        <main className="min-h-screen bg-background text-foreground tracking-tight">
+            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-12 sm:py-20">
                 {/* Hero */}
                 <section className="mb-8">
                     <div className="flex items-center justify-between mb-3">

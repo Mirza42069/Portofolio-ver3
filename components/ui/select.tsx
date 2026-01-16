@@ -26,9 +26,15 @@ function SelectGroup({
 }
 
 function SelectValue({
+  placeholder,
+  children,
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Value>) {
-  return <SelectPrimitive.Value data-slot="select-value" {...props} />
+}: Omit<React.ComponentProps<typeof SelectPrimitive.Value>, 'placeholder'> & { placeholder?: string }) {
+  return (
+    <SelectPrimitive.Value data-slot="select-value" {...props}>
+      {children ?? placeholder}
+    </SelectPrimitive.Value>
+  )
 }
 
 function SelectTrigger({
