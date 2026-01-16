@@ -1,6 +1,5 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
@@ -23,22 +22,52 @@ const badgeVariants = cva(
   }
 )
 
+type BadgeProps = React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & {
+    asChild?: boolean
+    render?: React.ReactElement<React.HTMLAttributes<HTMLElement>>
+  }
+
 function Badge({
   className,
   variant = "default",
   asChild = false,
+  render,
+  children,
   ...props
-}: React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot.Root : "span"
+}: BadgeProps) {
+  const combinedClassName = cn(badgeVariants({ variant }), className)
+
+  // If render prop is provided (Base UI pattern)
+  if (render && React.isValidElement(render)) {
+    return React.cloneElement(render, {
+      ...props,
+      className: cn(combinedClassName, render.props.className),
+      "data-slot": "badge",
+      "data-variant": variant,
+      children: render.props.children ?? children,
+    } as React.HTMLAttributes<HTMLElement>)
+  }
+
+  // If asChild is true (backwards compatibility)
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<any>, {
+      ...props,
+      className: cn(combinedClassName, (children as React.ReactElement<any>).props.className),
+      "data-slot": "badge",
+      "data-variant": variant,
+    })
+  }
 
   return (
-    <Comp
+    <span
       data-slot="badge"
       data-variant={variant}
-      className={cn(badgeVariants({ variant }), className)}
+      className={combinedClassName}
       {...props}
-    />
+    >
+      {children}
+    </span>
   )
 }
 

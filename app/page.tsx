@@ -3,22 +3,34 @@
 import { IconArrowUpRight, IconBrandGithub, IconBriefcase, IconMail, IconMapPin, IconSun, IconMoon } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { StarsBackground } from "@/components/animate-ui/components/backgrounds/stars";
+import { motion } from "motion/react";
 
 function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => setMounted(true), []);
 
-    if (!mounted) return <div className="w-5 h-5" />;
+    if (!mounted) return <div className="size-5" />;
+
+    const isDark = resolvedTheme === "dark";
 
     return (
         <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
             aria-label="Toggle theme"
+            className="relative size-5 text-muted-foreground"
         >
-            {theme === "dark" ? <IconSun size={20} /> : <IconMoon size={20} />}
+            <motion.div
+                key={isDark ? "sun" : "moon"}
+                animate={{ rotate: 0 }}
+                initial={{ rotate: isDark ? -90 : 90 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="flex items-center justify-center"
+            >
+                {isDark ? <IconSun size={20} /> : <IconMoon size={20} />}
+            </motion.div>
         </button>
     );
 }
@@ -26,7 +38,6 @@ function ThemeToggle() {
 const personalInfo = {
     name: "Mirza",
     location: "tangsel, indonesia",
-    bio: "i'm a 22 y/o computer engineering student. passionate about <highlight>making websites</highlight>. when i'm not sleeping, i'm probably rebuilding pc or editing videos.",
 };
 
 const workExperience = [
@@ -35,35 +46,29 @@ const workExperience = [
         role: "fullstack developer intern",
         url: "https://winni-project.vercel.app/",
         period: "march 2025 - august 2025",
-        description: "built a prototype news website",
     },
 ];
 const currentProject = {
     name: "thesis",
     url: "https://benchmark-db-result.vercel.app/",
-    description: "currently working on",
-    animated: true,
 };
 
 const projects = [
     {
         name: "money drain",
         url: "https://moneydrain.vercel.app/",
-        tag: "prototype",
         description: "simple money management website",
         year: "2025",
     },
     {
         name: "newsroom",
         url: "https://newsroom-webnewsagain.vercel.app/",
-        tag: "prototype",
         description: "better version of winnicode",
         year: "2025",
     },
     {
         name: "gacha simulator",
         url: null,
-        tag: "lost media",
         description: "1st time making website",
         year: "2024",
     },
@@ -100,10 +105,36 @@ function AnimatedDots() {
     return <span className="inline-block w-4">{dots}</span>;
 }
 
+function ThemedStarsBackground() {
+    const { resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+
+    if (!mounted) return null;
+
+    // Amber accent for light mode: #f59e0b (amber-500)
+    const starColor = resolvedTheme === "dark" 
+        ? "rgba(255,255,255,0.5)" 
+        : "rgba(245,158,11,0.4)"; // amber with transparency
+
+    return (
+        <div className="fixed inset-0 -z-10 dark:bg-[radial-gradient(ellipse_at_bottom,_#1a1a1a_0%,_#0a0a0a_100%)] bg-[radial-gradient(ellipse_at_bottom,_#f5f5f5_0%,_#ffffff_100%)]">
+            <StarsBackground 
+                starColor={starColor} 
+                speed={100} 
+                factor={0.03}
+                className="absolute inset-0"
+            />
+        </div>
+    );
+}
+
 export default function Page() {
     return (
-        <main className="min-h-screen bg-background text-foreground tracking-tight">
-            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-12 sm:py-20">
+        <main className="min-h-screen text-foreground tracking-tight relative">
+            <ThemedStarsBackground />
+            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-12 sm:py-20 relative z-10">
                 {/* Hero */}
                 <section className="mb-8">
                     <div className="flex items-center justify-between mb-3">
@@ -173,14 +204,11 @@ export default function Page() {
                                                 aria-hidden="true"
                                             />
                                         </h3>
-                                        <p className="text-sm sm:text-base text-foreground/50">{job.description}</p>
+                                        <p className="text-sm sm:text-base text-foreground/50">{job.role}</p>
                                     </div>
-                                    <div className="text-right">
-                                        <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">
-                                            {job.period}
-                                        </p>
-                                        <p className="text-sm sm:text-base text-gray-500">{job.role}</p>
-                                    </div>
+                                    <p className="text-xs sm:text-base text-gray-500 whitespace-nowrap">
+                                        {job.period}
+                                    </p>
                                 </div>
                             </a>
                         ))}

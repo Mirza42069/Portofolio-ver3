@@ -1,6 +1,5 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
@@ -34,27 +33,58 @@ const buttonVariants = cva(
   }
 )
 
+type ButtonProps = React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+    render?: React.ReactElement<React.HTMLAttributes<HTMLElement>>
+  }
+
 function Button({
   className,
   variant = "default",
   size = "default",
   asChild = false,
+  render,
+  children,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot.Root : "button"
+}: ButtonProps) {
+  const combinedClassName = cn(buttonVariants({ variant, size, className }))
+  
+  // If render prop is provided (Base UI pattern)
+  if (render && React.isValidElement(render)) {
+    return React.cloneElement(render, {
+      ...props,
+      className: cn(combinedClassName, render.props.className),
+      "data-slot": "button",
+      "data-variant": variant,
+      "data-size": size,
+      children: render.props.children ?? children,
+    } as React.HTMLAttributes<HTMLElement>)
+  }
+  
+  // If asChild is true (Radix pattern for backwards compatibility)
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(children as React.ReactElement<any>, {
+      ...props,
+      className: cn(combinedClassName, (children as React.ReactElement<any>).props.className),
+      "data-slot": "button",
+      "data-variant": variant,
+      "data-size": size,
+    })
+  }
 
   return (
-    <Comp
+    <button
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={combinedClassName}
       {...props}
-    />
+    >
+      {children}
+    </button>
   )
 }
 
 export { Button, buttonVariants }
+
