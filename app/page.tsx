@@ -103,7 +103,7 @@ function AnimatedDots() {
 export default function Page() {
     return (
         <main className="min-h-screen bg-background text-foreground tracking-tight">
-            <div className="mx-auto max-w-4xl px-6 py-12 sm:px-12 sm:py-20">
+            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-12 sm:py-20">
                 {/* Hero */}
                 <section className="mb-8">
                     <div className="flex items-center justify-between mb-3">
