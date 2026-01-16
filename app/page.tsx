@@ -1,8 +1,27 @@
 "use client";
 
-import { IconArrowUpRight, IconBrandGithub, IconBriefcase, IconMail, IconMapPin } from "@tabler/icons-react";
+import { IconArrowUpRight, IconBrandGithub, IconBriefcase, IconMail, IconMapPin, IconSun, IconMoon } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
+function ThemeToggle() {
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+
+    if (!mounted) return <div className="w-5 h-5" />;
+
+    return (
+        <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Toggle theme"
+        >
+            {theme === "dark" ? <IconSun size={20} /> : <IconMoon size={20} />}
+        </button>
+    );
+}
 // Personal info
 const personalInfo = {
     name: "Mirza",
@@ -84,17 +103,20 @@ function AnimatedDots() {
 export default function Page() {
     return (
         <main className="min-h-screen bg-background text-foreground tracking-tight">
-            <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8 sm:py-14">
+            <div className="mx-auto max-w-4xl px-6 py-12 sm:px-12 sm:py-20">
                 {/* Hero */}
                 <section className="mb-8">
-                    <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-3">
-                        <BlurReveal name={personalInfo.name} />
-                    </h1>
-                    <p className="text-gray-500 flex items-center gap-2 text-sm sm:text-base">
+                    <div className="flex items-center justify-between mb-3">
+                        <h1 className="text-3xl sm:text-4xl font-semibold text-foreground">
+                            <BlurReveal name={personalInfo.name} />
+                        </h1>
+                        <ThemeToggle />
+                    </div>
+                    <p className="text-foreground/50 flex items-center gap-2 text-sm sm:text-base">
                         <IconMapPin size={16} aria-hidden="true" />
                         {personalInfo.location}
                     </p>
-                    <p className="text-gray-500 flex items-center gap-2 text-sm sm:text-base">
+                    <p className="text-foreground/50 flex items-center gap-2 text-sm sm:text-base">
                         <IconBriefcase size={16} aria-hidden="true" />
                         open to opportunities
                     </p>
