@@ -1,15 +1,23 @@
 "use client";
 
 import { IconArrowUpRight, IconBrandGithub, IconBriefcase, IconMail, IconMapPin, IconSun, IconMoon } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "motion/react";
 
+// Hydration-safe hook for client-only rendering
+const emptySubscribe = () => () => {};
+function useHydrated() {
+    return useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    );
+}
+
 function ThemeToggle() {
     const { resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => setMounted(true), []);
+    const mounted = useHydrated();
 
     if (!mounted) return <div className="size-5" />;
 
@@ -125,7 +133,7 @@ export default function Page() {
                         open to opportunities
                     </p>
                     <p className="text-foreground/50 leading-relaxed text-sm sm:text-base mt-3">
-                        i'm a 22 y/o computer engineering student. passionate about <span className="text-foreground">making websites</span>. when i'm not sleeping, i'm probably rebuilding pc or editing videos.
+                        I&apos;m a 22 y/o computer engineering student. Passionate about <span className="text-foreground">making websites</span>. When I&apos;m not sleeping, I&apos;m probably rebuilding PCs or editing videos.
                     </p>
                 </section>
 
