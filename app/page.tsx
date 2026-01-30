@@ -130,7 +130,7 @@ export default function Page() {
                     </p>
                     <p className="text-foreground/50 flex items-center gap-2 text-sm sm:text-base">
                         <IconBriefcase size={16} aria-hidden="true" />
-                        open to opportunities
+                        intern @ pertamina-medco-tomori
                     </p>
                     <p className="text-foreground/50 leading-relaxed text-sm sm:text-base mt-3">
                         I&apos;m a 22 y/o computer engineering student. Passionate about <span className="text-foreground">making websites</span>. When I&apos;m not sleeping, I&apos;m probably rebuilding PCs or editing videos.
