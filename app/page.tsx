@@ -130,7 +130,22 @@ export default function Page() {
                     </p>
                     <p className="text-foreground/50 flex items-center gap-2 text-sm sm:text-base">
                         <IconBriefcase size={16} aria-hidden="true" />
-                        intern @ pertamina-medco-tomori
+                        <span>
+                            intern @{" "}
+                            <a
+                                href="https://phe.pertamina.com/id/kehati/job-p-medco-simenggaris"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
+                            >
+                                pertamina-medco
+                                <IconArrowUpRight
+                                    size={16}
+                                    className="text-muted-foreground opacity-0 -translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+                                    aria-hidden="true"
+                                />
+                            </a>
+                        </span>
                     </p>
                     <p className="text-foreground/50 leading-relaxed text-sm sm:text-base mt-3">
                         I&apos;m a 22 y/o computer engineering student. Passionate about <span className="text-foreground">making websites</span>. When I&apos;m not sleeping, I&apos;m probably rebuilding PCs or editing videos.
@@ -173,11 +188,11 @@ export default function Page() {
                                 href={job.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group block"
+                                className="group block text-foreground transition-colors hover:text-primary"
                             >
                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                                     <div className="flex-1">
-                                        <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary inline-flex items-center gap-2">
+                                        <h3 className="text-sm sm:text-base font-medium inline-flex items-center gap-2">
                                             {job.company}
                                             <IconArrowUpRight
                                                 size={16}
