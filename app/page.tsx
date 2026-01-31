@@ -244,10 +244,10 @@ export default function Page() {
                                     </div>
                                 </a>
                             ) : (
-                                <div key={project.name} className="group cursor-default">
+                                <div key={project.name} className="cursor-default">
                                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                                         <div className="flex-1">
-                                            <h3 className="text-sm sm:text-base font-medium text-foreground transition-colors group-hover:text-primary">
+                                            <h3 className="text-sm sm:text-base font-medium text-foreground">
                                                 {project.name}
                                             </h3>
                                             <p className="mt-1 text-sm sm:text-base text-foreground/50">{project.description}</p>
